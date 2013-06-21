@@ -66,6 +66,7 @@ describe('Akismet-api', function() {
           host : 'rest1.akismet.com'
         });
         scope = nock('http://rest1.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/verify-key')
         .reply(200, 'valid', {
           'Content-Type' : 'text/plain' 
@@ -102,6 +103,7 @@ describe('Akismet-api', function() {
           host : 'rest2.akismet.com'
         });
         scope = nock('http://rest2.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/verify-key')
         .reply(200, 'invalid', {
           'Content-Type' : 'text/plain',
@@ -171,6 +173,7 @@ describe('Akismet-api', function() {
           key  : 'testKey4'
         });
         scope = nock('http://testKey4.rest.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/comment-check')
         .reply(200, 'true', {
           'Content-Type' : 'text/plain'
@@ -210,6 +213,7 @@ describe('Akismet-api', function() {
           key  : 'testKey5'
         });
         scope = nock('http://testKey5.rest.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/comment-check')
         .reply(200, 'false', {
           'Content-Type' : 'text/plain'
@@ -249,6 +253,7 @@ describe('Akismet-api', function() {
           key  : 'testKey6'
         });
         scope = nock('http://testKey6.rest.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/comment-check')
         .reply(200, 'notAValidValueAtAll', {
           'Content-Type' : 'text/plain',
@@ -325,6 +330,7 @@ describe('Akismet-api', function() {
           key  : 'testKey8'
         });
         scope = nock('http://testKey8.rest.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-spam')
         .reply(200, 'Thank you for making the internet a better place', {
           'Content-Type' : 'text/plain'
@@ -354,6 +360,7 @@ describe('Akismet-api', function() {
           key  : 'testKey9'
         });
         scope = nock('http://testKey9.rest.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-spam')
         .reply(500, 'Oh, whoops.', {
           'Content-Type' : 'text/plain'
@@ -410,6 +417,7 @@ describe('Akismet-api', function() {
           key  : 'testKey11'
         });
         scope = nock('http://testKey11.rest.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-ham')
         .reply(200, 'Thank you for making the internet a better place', {
           'Content-Type' : 'text/plain'
@@ -439,6 +447,7 @@ describe('Akismet-api', function() {
           key  : 'testKey12'
         });
         scope = nock('http://testKey12.rest.akismet.com')
+        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-ham')
         .reply(500, 'Oh, whoops.', {
           'Content-Type' : 'text/plain'
