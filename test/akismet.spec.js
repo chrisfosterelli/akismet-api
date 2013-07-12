@@ -46,7 +46,7 @@ describe('Akismet-api', function() {
       expect(client.host).to.equal('rest.akismet.com');
       expect(client.endpoint).to.equal('undefined.rest.akismet.com/1.1/');
       expect(client.port).to.equal(80);
-      expect(client.userAgent).to.equal('Node.js/' + process.version + ' | Akismet-api/0.0.1');
+      expect(client.userAgent).to.equal('Node.js/' + process.version + ' | Akismet-api/1.0.1');
       expect(client.version).to.equal('1.1');
     });
 
