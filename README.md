@@ -133,5 +133,6 @@ Web: http://memoryleaf.net
 License
 -------
 
-MIT
+Released under the MIT license.
+
 See [LICENSE.txt](LICENSE.txt) for more information.
