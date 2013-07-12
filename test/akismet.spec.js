@@ -46,7 +46,7 @@ describe('Akismet-api', function() {
       expect(client.host).to.equal('rest.akismet.com');
       expect(client.endpoint).to.equal('undefined.rest.akismet.com/1.1/');
       expect(client.port).to.equal(80);
-      expect(client.userAgent).to.equal('Node.js/' + process.version + ' | Akismet-api/1.0.1');
+      expect(client.userAgent).to.equal('Node.js/' + process.version + ' | Akismet-api/1.1.0');
       expect(client.version).to.equal('1.1');
     });
 
@@ -93,6 +93,85 @@ describe('Akismet-api', function() {
 
     describe('when the request returns \'invalid\'', function() {
 
+      describe('when the x-akismet-debug-help header is present', function() {
+
+        var client;
+        var scope;
+        
+        beforeEach(function() {
+          client = Akismet.client({
+            blog : 'http://example.com',
+            key  : 'testKey2',
+            host : 'rest2.akismet.com'
+          });
+          scope = nock('http://rest2.akismet.com')
+          .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
+          .post('/1.1/verify-key')
+          .reply(200, 'invalid', {
+            'Content-Type' : 'text/plain',
+            'X-akismet-debug-help' : 'Could not find your key'
+          });
+        });
+
+        it('should return false', function(done) {
+          client.verifyKey(function(err, valid) {
+            expect(valid).to.be.false;
+            scope.done();
+            done();
+          });
+        });
+
+        it('should return the akismet debug error', function(done) {
+          client.verifyKey(function(err, valid) {
+            expect(err.message).to.equal('Could not find your key');
+            scope.done();
+            done();
+          });
+        });
+      
+      });
+
+      describe('when the x-akismet-debug-help header is not present', function() {
+
+        var client;
+        var scope;
+        
+        beforeEach(function() {
+          client = Akismet.client({
+            blog : 'http://example.com',
+            key  : 'testKey2',
+            host : 'rest2.akismet.com'
+          });
+          scope = nock('http://rest2.akismet.com')
+          .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
+          .post('/1.1/verify-key')
+          .reply(200, 'invalid', {
+            'Content-Type' : 'text/plain'
+          });
+        });
+
+        it('should return false', function(done) {
+          client.verifyKey(function(err, valid) {
+            expect(valid).to.be.false;
+            scope.done();
+            done();
+          });
+        });
+
+        it('should return \'Invalid API key\'', function(done) {
+          client.verifyKey(function(err, valid) {
+            expect(err.message).to.equal('Invalid API key');
+            scope.done();
+            done();
+          });
+        });
+      
+      });
+
+    });
+
+    describe('when the request returns anything else', function() {
+
       var client;
       var scope;
       
@@ -105,9 +184,8 @@ describe('Akismet-api', function() {
         scope = nock('http://rest2.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/verify-key')
-        .reply(200, 'invalid', {
-          'Content-Type' : 'text/plain',
-          'X-akismet-debug-help' : 'Could not find your key'
+        .reply(200, 'whatisthiserror', {
+          'Content-Type' : 'text/plain'
         });
       });
 
@@ -119,9 +197,9 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return the akismet debug error', function(done) {
+      it('should return the response', function(done) {
         client.verifyKey(function(err, valid) {
-          expect(err.message).to.equal('Could not find your key');
+          expect(err.message).to.equal('whatisthiserror');
           scope.done();
           done();
         });
@@ -243,42 +321,86 @@ describe('Akismet-api', function() {
     });
 
     describe('when the request returns something else', function() {
+
+      describe('when the x-akismet-debug-help header is present', function() {
     
-      var client;
-      var scope;
+        var client;
+        var scope;
+        
+        beforeEach(function() {
+          client = Akismet.client({
+            blog : 'http://example.com',
+            key  : 'testKey6'
+          });
+          scope = nock('http://testKey6.rest.akismet.com')
+          .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
+          .post('/1.1/comment-check')
+          .reply(200, 'notAValidValueAtAll', {
+            'Content-Type' : 'text/plain',
+            'X-akismet-debug-help' : 'You did something wrong!'
+          });
+        });
+
+        it('should return null', function(done) {
+          client.checkSpam({
+            user_ip : '123.123.123.123'
+          }, function(err, spam) {
+            expect(spam).to.be.null;
+            scope.done();
+            done();
+          });
+        });
       
-      beforeEach(function() {
-        client = Akismet.client({
-          blog : 'http://example.com',
-          key  : 'testKey6'
+        it('should return the akismet debug error', function(done) {
+          client.checkSpam({
+            user_ip : '123.123.123.123'
+          }, function(err, spam) {
+            expect(err.message).to.equal('You did something wrong!');
+            scope.done();
+            done();
+          });
         });
-        scope = nock('http://testKey6.rest.akismet.com')
-        .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
-        .post('/1.1/comment-check')
-        .reply(200, 'notAValidValueAtAll', {
-          'Content-Type' : 'text/plain',
-          'X-akismet-debug-help' : 'You did something wrong!'
-        });
+
       });
 
-      it('should return null', function(done) {
-        client.checkSpam({
-          user_ip : '123.123.123.123'
-        }, function(err, spam) {
-          expect(spam).to.be.null;
-          scope.done();
-          done();
-        });
-      });
+      describe('when the x-akismet-debug-help header is not present', function() {
     
-      it('should return the akismet debug error', function(done) {
-        client.checkSpam({
-          user_ip : '123.123.123.123'
-        }, function(err, spam) {
-          expect(err.message).to.equal('You did something wrong!');
-          scope.done();
-          done();
+        var client;
+        var scope;
+        
+        beforeEach(function() {
+          client = Akismet.client({
+            blog : 'http://example.com',
+            key  : 'testKey6'
+          });
+          scope = nock('http://testKey6.rest.akismet.com')
+          .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
+          .post('/1.1/comment-check')
+          .reply(200, 'notAValidValueAtAll', {
+            'Content-Type' : 'text/plain'
+          });
         });
+
+        it('should return null', function(done) {
+          client.checkSpam({
+            user_ip : '123.123.123.123'
+          }, function(err, spam) {
+            expect(spam).to.be.null;
+            scope.done();
+            done();
+          });
+        });
+      
+        it('should return the response', function(done) {
+          client.checkSpam({
+            user_ip : '123.123.123.123'
+          }, function(err, spam) {
+            expect(err.message).to.equal('notAValidValueAtAll');
+            scope.done();
+            done();
+          });
+        });
+
       });
 
     });
