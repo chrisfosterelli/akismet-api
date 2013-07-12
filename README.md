@@ -130,3 +130,8 @@ Development was sponsored by MemoryLeaf Media.
 Github: http://github.com/memoryleaf
 Web: http://memoryleaf.net
 
+License
+-------
+
+MIT
+See [LICENSE.txt](LICENSE.txt) for more information.
