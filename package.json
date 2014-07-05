@@ -1,15 +1,15 @@
 {
   "name": "akismet-api",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Nodejs bindings to the Akismet (http://akismet.com) spam detection service",
   "main": "lib/akismet.js",
   "dependencies": {
-    "superagent": "~0.14.9"
+    "superagent": "^0.14.9"
   },
   "devDependencies": {
-    "chai": "~1.7.0",
-    "nock": "~0.18.2",
-    "mocha": "~1.11.0"
+    "chai": "^1.7.0",
+    "nock": "^0.18.2",
+    "mocha": "^1.11.0"
   },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha test/*.spec.js"
