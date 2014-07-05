@@ -2,7 +2,7 @@ Akismet-api
 ===========
 
 [![Build Status](https://travis-ci.org/chrisfosterelli/akismet-api.svg?branch=master)](https://travis-ci.org/chrisfosterelli/akismet-api)
-[![Dependency Status](https://david-dm.org/chrisfosterelli/akismet-api.png)](https://travis-ci.org/chrisfosterelli/akismet-api)
+[![Dependency Status](https://david-dm.org/chrisfosterelli/akismet-api.png)](https://david-dm.org/chrisfosterelli/akismet-api)
 
 Full Nodejs bindings to the Akismet (http://akismet.com) spam detection service.
 
