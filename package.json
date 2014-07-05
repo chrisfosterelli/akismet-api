@@ -4,6 +4,7 @@
   "description": "Nodejs bindings to the Akismet (http://akismet.com) spam detection service",
   "main": "lib/akismet.js",
   "dependencies": {
+    "setimmediate": "^1.0.2",
     "superagent": "^0.18.0"
   },
   "devDependencies": {
