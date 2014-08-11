@@ -1,6 +1,6 @@
 {
   "name": "akismet-api",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Nodejs bindings to the Akismet (http://akismet.com) spam detection service",
   "main": "lib/akismet.js",
   "dependencies": {
