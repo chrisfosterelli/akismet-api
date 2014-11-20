@@ -5,7 +5,7 @@
   "main": "lib/akismet.js",
   "dependencies": {
     "setimmediate": "^1.0.2",
-    "superagent": "^0.18.0"
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "chai": "^1.7.0",
