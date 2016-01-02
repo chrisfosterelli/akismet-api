@@ -49,7 +49,7 @@ Here is an example of the promise version of the `verifyKey()` function:
 client.verifyKey()
 .then(function(valid) {
   if (valid) console.log('Valid key!');
-  else console.log('Invalid key');
+  else console.log('Invalid key!');
 })
 .catch(function(err) {
   console.log('Check failed: ' + err.message);
