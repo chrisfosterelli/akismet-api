@@ -6,21 +6,19 @@ Akismet-api
 
 Full Nodejs bindings to the Akismet (http://akismet.com) spam detection service.
 
-Uses a modern HTTP client and provides a full test suite.
+Features:
+* Promise and callback support
+* Supports node/iojs from 0.8 to 4.1
+* Supports all Akismet API features
+* Uses a modern HTTP client
+* Complete test suite
+* No coffeescript
 
 Installing
 --------
 
 ```bash
 npm install akismet-api
-```
-
-Testing
--------
-
-```bash
-cd node_modules/akismet-api
-npm test
 ```
 
 Creating the Client
@@ -141,13 +139,18 @@ client.submitHam({
 });
 ```
 
-Development
------------
+Credits
+-------
 
-Development was sponsored by MemoryLeaf Media.
+Author and maintainer is [Chris Foster](https://github.com/chrisfosterelli). Development was sponsored by [MemoryLeaf Media](https://github.com/memoryleaf).
 
-Github: http://github.com/memoryleaf
-Web: http://memoryleaf.net
+Testing
+-------
+
+```bash
+cd node_modules/akismet-api
+npm test
+```
 
 License
 -------
