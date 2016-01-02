@@ -3,6 +3,7 @@
  * Describes tests for the akismet-api module */
 
 var Akismet = require('../lib/akismet');
+var Promise = require('bluebird');
 var chai    = require('chai');
 var nock    = require('nock');
 
@@ -53,6 +54,11 @@ describe('Akismet-api', function() {
   });
 
   describe('client#verifyKey()', function() {
+
+    it('should support promises', function() {
+      var client = Akismet.client();
+      expect(client.verifyKey()).to.be.an.instanceof(Promise);
+    });
   
     describe('when the request returns \'valid\'', function() {
 
@@ -239,6 +245,11 @@ describe('Akismet-api', function() {
   });
 
   describe('client#checkSpam()', function() {
+
+    it('should support promises', function() {
+      var client = Akismet.client();
+      expect(client.verifyKey()).to.be.an.instanceof(Promise);
+    });
     
     describe('when the request returns \'true\'', function() {
     
@@ -440,6 +451,11 @@ describe('Akismet-api', function() {
   });
 
   describe('client#submitSpam()', function() {
+
+    it('should support promises', function() {
+      var client = Akismet.client();
+      expect(client.verifyKey()).to.be.an.instanceof(Promise);
+    });
  
     describe('when the request returns a 2XX status code ', function() {
     
@@ -527,6 +543,11 @@ describe('Akismet-api', function() {
   });
 
   describe('client#submitHam()', function() {
+
+    it('should support promises', function() {
+      var client = Akismet.client();
+      expect(client.verifyKey()).to.be.an.instanceof(Promise);
+    });
     
     describe('when the request returns a 2XX status code ', function() {
     
