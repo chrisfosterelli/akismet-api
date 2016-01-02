@@ -37,6 +37,25 @@ var client = akismet.client({
 });
 ```
 
+Promises and Callbacks
+----------------------
+
+All of the function methods below support both promises and callbacks!
+The returned promises use the [Bluebird](https://github.com/petkaantonov/bluebird) promise library.
+The following documentation primarily uses the callback version, but to return a promise simply don't provide a callback.
+Here is an example of the promise version of the `verifyKey()` function:
+
+```javascript
+client.verifyKey()
+.then(function(valid) {
+  if (valid) console.log('Valid key!');
+  else console.log('Invalid key!');
+})
+.catch(function(err) {
+  console.log('Check failed: ' + err.message);
+}):
+```
+
 Verifying your Key
 ------------------
 
@@ -44,12 +63,9 @@ It's a good idea to verify your key before use. If your key returns as invalid, 
 
 ```javascript
 client.verifyKey(function(err, valid) {
-  if (valid) {
-    console.log('Valid key!');
-  } else {
-    console.log('Key validation failed...');
-    console.log(err.message);
-  }
+  if (err) console.log('Error:', err.message);
+  if (valid) console.log('Valid key!');
+  else console.log('Invalid key!');
 });
 ```
 
