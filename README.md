@@ -139,11 +139,6 @@ client.submitHam({
 });
 ```
 
-Credits
--------
-
-Author and maintainer is [Chris Foster](https://github.com/chrisfosterelli). Development was sponsored by [MemoryLeaf Media](https://github.com/memoryleaf).
-
 Testing
 -------
 
@@ -151,6 +146,11 @@ Testing
 cd node_modules/akismet-api
 npm test
 ```
+
+Credits
+-------
+
+Author and maintainer is [Chris Foster](https://github.com/chrisfosterelli). Development was sponsored by [MemoryLeaf Media](https://github.com/memoryleaf).
 
 License
 -------
