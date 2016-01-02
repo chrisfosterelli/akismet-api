@@ -124,9 +124,9 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return \'Invalid API key\'', function(done) {
+      it('should not return an error', function(done) {
         client.verifyKey(function(err, valid) {
-          expect(err.message).to.equal('Invalid API key');
+          expect(err).to.be.null;
           scope.done();
           done();
         });
