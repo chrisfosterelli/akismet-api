@@ -153,9 +153,9 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return false', function(done) {
+      it('should return falsey', function(done) {
         client.verifyKey(function(err, valid) {
-          expect(valid).to.be.false;
+          expect(valid).to.be.falsey;
           scope.done();
           done();
         });
@@ -183,10 +183,10 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return null', function(done) {
+      it('should return falsey', function(done) {
         client.verifyKey(function(err, valid) {
           expect(err).to.not.be.false;
-          expect(valid).to.be.null;
+          expect(valid).to.be.falsey;
           done();
         });
       });
@@ -310,11 +310,11 @@ describe('Akismet-api', function() {
           });
         });
 
-        it('should return null', function(done) {
+        it('should return falsey', function(done) {
           client.checkSpam({
             user_ip : '123.123.123.123'
           }, function(err, spam) {
-            expect(spam).to.be.null;
+            expect(spam).to.be.falsey;
             scope.done();
             done();
           });
@@ -350,11 +350,11 @@ describe('Akismet-api', function() {
           });
         });
 
-        it('should return null', function(done) {
+        it('should return falsey', function(done) {
           client.checkSpam({
             user_ip : '123.123.123.123'
           }, function(err, spam) {
-            expect(spam).to.be.null;
+            expect(spam).to.be.falsey;
             scope.done();
             done();
           });
@@ -386,11 +386,11 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return null', function(done) {
+      it('should return falsey', function(done) {
         client.checkSpam({
           user_ip : '123.123.123.123'
         }, function(err, spam) {
-          expect(spam).to.be.null;
+          expect(spam).to.be.falsey;
           done();
         });
       });
