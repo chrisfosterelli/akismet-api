@@ -467,7 +467,7 @@ describe('Akismet-api', function() {
         client.submitSpam({
           user_ip : '123.123.123.123'
         }, function(err) {
-          expect(err).to.equal('Oh, whoops.');
+          expect(err.message).to.equal('Oh, whoops.');
           scope.done();
           done();
         });
@@ -559,7 +559,7 @@ describe('Akismet-api', function() {
         client.submitHam({
           user_ip : '123.123.123.123'
         }, function(err) {
-          expect(err).to.equal('Oh, whoops.');
+          expect(err.message).to.equal('Oh, whoops.');
           scope.done();
           done();
         });
