@@ -14,6 +14,8 @@ Features:
 * Complete test suite
 * No coffeescript
 
+_Upgrading to 2.0?_ You likely don't need to change anything, but check out the [changelog](CHANGELOG.md).
+
 Installing
 --------
 
