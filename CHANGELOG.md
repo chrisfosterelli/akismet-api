@@ -1,3 +1,12 @@
+2.1.0
+=====
+
+* Feature: Added official support for Node 6.x 
+* Feature: Added official support for Node 5.x 
+* Patch: Updated superagent to 1.8.3
+* Patch: Updated mocha to 2.4.5
+* Patch: Updated chai to 3.5.0
+
 2.0.0
 =====
 
