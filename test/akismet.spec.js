@@ -399,6 +399,7 @@ describe('Akismet-api', function() {
         client.checkSpam({
           user_ip : '123.123.123.123'
         }, function(err, spam) {
+          expect(err.message).to.include('ENOTFOUND');
           expect(err).to.not.be.null;
           done();
         });
@@ -491,6 +492,7 @@ describe('Akismet-api', function() {
         client.submitSpam({
           user_ip : '123.123.123.123'
         }, function(err) {
+          expect(err.message).to.include('ENOTFOUND');
           expect(err).to.not.be.null;
           done();
         });
