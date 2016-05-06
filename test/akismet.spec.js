@@ -179,7 +179,7 @@ describe('Akismet-api', function() {
         client = Akismet.client({
           blog : 'http://example.com',
           key  : 'testKey3',
-          host : 'localhost' // will fail!
+          host : 'notarealdomain' // will fail!
         });
       });
 
@@ -193,6 +193,7 @@ describe('Akismet-api', function() {
 
       it('should return the error', function(done) {
         client.verifyKey(function(err, valid) {
+          expect(err.message).to.include('ENOTFOUND');
           expect(err).to.not.be.null;
           done();
         });
@@ -382,7 +383,7 @@ describe('Akismet-api', function() {
         client = Akismet.client({
           blog : 'http://example.com',
           key  : 'testKey7',
-          host : 'localhost' // will fail!
+          host : 'notarealdomain' // will fail!
         });
       });
 
@@ -399,6 +400,7 @@ describe('Akismet-api', function() {
         client.checkSpam({
           user_ip : '123.123.123.123'
         }, function(err, spam) {
+          expect(err.message).to.include('ENOTFOUND');
           expect(err).to.not.be.null;
           done();
         });
@@ -428,7 +430,7 @@ describe('Akismet-api', function() {
         scope = nock('http://testKey8.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-spam')
-        .reply(200, 'Thank you for making the internet a better place', {
+        .reply(200, 'Thanks for making the web a better place.', {
           'Content-Type' : 'text/plain'
         });
       });
@@ -458,7 +460,7 @@ describe('Akismet-api', function() {
         scope = nock('http://testKey9.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-spam')
-        .reply(500, 'Oh, whoops.', {
+        .reply(500, {
           'Content-Type' : 'text/plain'
         });
       });
@@ -467,7 +469,7 @@ describe('Akismet-api', function() {
         client.submitSpam({
           user_ip : '123.123.123.123'
         }, function(err) {
-          expect(err.message).to.equal('Oh, whoops.');
+          expect(err.message).to.equal('Internal Server Error');
           scope.done();
           done();
         });
@@ -483,7 +485,7 @@ describe('Akismet-api', function() {
         client = Akismet.client({
           blog : 'http://example.com',
           key  : 'testKey10',
-          host : 'localhost' // will fail!
+          host : 'notarealdomain' // will fail!
         });
       });
 
@@ -491,6 +493,7 @@ describe('Akismet-api', function() {
         client.submitSpam({
           user_ip : '123.123.123.123'
         }, function(err) {
+          expect(err.message).to.include('ENOTFOUND');
           expect(err).to.not.be.null;
           done();
         });
@@ -520,7 +523,7 @@ describe('Akismet-api', function() {
         scope = nock('http://testKey11.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-ham')
-        .reply(200, 'Thank you for making the internet a better place', {
+        .reply(200, 'Thanks for making the web a better place.', {
           'Content-Type' : 'text/plain'
         });
       });
@@ -550,7 +553,7 @@ describe('Akismet-api', function() {
         scope = nock('http://testKey12.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-ham')
-        .reply(500, 'Oh, whoops.', {
+        .reply(500, {
           'Content-Type' : 'text/plain'
         });
       });
@@ -559,7 +562,7 @@ describe('Akismet-api', function() {
         client.submitHam({
           user_ip : '123.123.123.123'
         }, function(err) {
-          expect(err.message).to.equal('Oh, whoops.');
+          expect(err.message).to.equal('Internal Server Error');
           scope.done();
           done();
         });
@@ -575,7 +578,7 @@ describe('Akismet-api', function() {
         client = Akismet.client({
           blog : 'http://example.com',
           key  : 'testKey13',
-          host : 'localhost' // will fail!
+          host : 'notarealdomain' // will fail!
         });
       });
 
@@ -583,6 +586,7 @@ describe('Akismet-api', function() {
         client.submitHam({
           user_ip : '123.123.123.123'
         }, function(err) {
+          expect(err.message).to.include('ENOTFOUND');
           expect(err).to.not.be.null;
           done();
         });
