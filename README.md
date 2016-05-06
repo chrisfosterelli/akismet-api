@@ -8,7 +8,7 @@ Full Nodejs bindings to the Akismet (http://akismet.com) spam detection service.
 
 Features:
 * Promise and callback support
-* Supports node/iojs from 0.8 to 4.1
+* Supports node/iojs from 0.8 to 6.1
 * Supports all Akismet API features
 * Uses a modern HTTP client
 * Complete test suite
