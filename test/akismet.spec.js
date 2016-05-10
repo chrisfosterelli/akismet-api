@@ -2,10 +2,11 @@
 /* akismet.spec.js
  * Describes tests for the akismet-api module */
 
-var Akismet = require('../lib/akismet');
-var Promise = require('bluebird');
 var chai    = require('chai');
 var nock    = require('nock');
+var Promise = require('bluebird');
+var Akismet = require('../lib/akismet');
+var pjson   = require('../package.json');
 
 var expect = chai.expect;
 
@@ -47,7 +48,7 @@ describe('Akismet-api', function() {
       expect(client.host).to.equal('rest.akismet.com');
       expect(client.endpoint).to.equal('undefined.rest.akismet.com/1.1/');
       expect(client.port).to.equal(80);
-      expect(client.userAgent).to.equal('Node.js/' + process.version + ' | Akismet-api/2.1.0');
+      expect(client.userAgent).to.equal('Node.js/' + process.version + ' | Akismet-api/' + pjson.version);
       expect(client.version).to.equal('1.1');
     });
 
