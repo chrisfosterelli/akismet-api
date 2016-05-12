@@ -32,24 +32,26 @@ describe('Akismet-api', function() {
         version   : '9.9',
         port      : 500
       });
-      expect(client.blog).to.equal('http://example.com');
+      expect(client.port).to.equal(500);
       expect(client.key).to.equal('testKey');
+      expect(client.blog).to.equal('http://example.com');
+      expect(client.version).to.equal('9.9');
       expect(client.host).to.equal('test.akismet.com');
       expect(client.endpoint).to.equal('endpoint.akismet.com');
-      expect(client.port).to.equal(500);
       expect(client.userAgent).to.equal('MyAgent 1.0');
-      expect(client.version).to.equal('9.9');
     });
 
     it('should provide default values', function() {
       var client = Akismet.client();
-      expect(client.blog).to.be.undefined;
+      expect(client.port).to.equal(80);
       expect(client.key).to.be.undefined;
+      expect(client.blog).to.be.undefined;
+      expect(client.version).to.equal('1.1');
       expect(client.host).to.equal('rest.akismet.com');
       expect(client.endpoint).to.equal('undefined.rest.akismet.com/1.1/');
-      expect(client.port).to.equal(80);
-      expect(client.userAgent).to.equal('Node.js/' + process.version + ' | Akismet-api/' + pjson.version);
-      expect(client.version).to.equal('1.1');
+      expect(client.userAgent).to.equal(
+        'Node.js/' + process.version + ' | Akismet-api/' + pjson.version
+      );
     });
 
   });
@@ -293,7 +295,7 @@ describe('Akismet-api', function() {
 
     describe('when the request returns something else', function() {
 
-      describe('when the x-akismet-debug-help header is present', function() {
+      describe('when the akismet debug header is present', function() {
     
         var client;
         var scope;
@@ -334,7 +336,7 @@ describe('Akismet-api', function() {
 
       });
 
-      describe('when the x-akismet-debug-help header is not present', function() {
+      describe('when the akismet debug header is not present', function() {
     
         var client;
         var scope;
