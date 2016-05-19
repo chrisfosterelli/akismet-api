@@ -6,7 +6,7 @@ Akismet-api
 [![Download Count](https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square)](https://www.npmjs.com/package/akismet-api)
 [![License](https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square)](LICENSE.txt)
 
-Full Nodejs bindings to the Akismet (http://akismet.com) spam detection service.
+Full Nodejs bindings to the Akismet (https://akismet.com) spam detection service.
 
 Features:
 * Promise and callback support
