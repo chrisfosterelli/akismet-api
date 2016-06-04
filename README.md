@@ -1,7 +1,7 @@
 Akismet-api
 ===========
 
-[![Build Status](https://img.shields.io/travis/chrisfosterelli/akismet-api.svg?maxAge=3600&style=flat-square)](https://travis-ci.org/chrisfosterelli/akismet-api)
+[![Build Status](https://img.shields.io/travis/chrisfosterelli/akismet-api/master.svg?maxAge=3600&style=flat-square)](https://travis-ci.org/chrisfosterelli/akismet-api)
 [![Dependency Status](https://img.shields.io/david/chrisfosterelli/akismet-api.svg?maxAge=3600&style=flat-square)](https://david-dm.org/chrisfosterelli/akismet-api)
 [![Download Count](https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square)](https://www.npmjs.com/package/akismet-api)
 [![License](https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square)](LICENSE.txt)
