@@ -86,7 +86,8 @@ client.checkSpam({
   comment_author : 'John Smith',
   comment_author_email : 'john.smith@gmail.com',
   comment_author_url : 'http://johnsblog.com',
-  comment_content : 'Very nice blog! Check out mine!'
+  comment_content : 'Very nice blog! Check out mine!',
+  is_test : true // Default value is false
 }, function(err, spam) {
   if (err) console.log ('Error!');
   if (spam) {
