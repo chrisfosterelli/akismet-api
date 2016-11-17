@@ -155,7 +155,8 @@ npm test
 Credits
 -------
 
-Author and maintainer is [Chris Foster](https://github.com/chrisfosterelli). Development was sponsored by [MemoryLeaf Media](https://github.com/memoryleaf).
+Author and maintainer is [Chris Foster](https://github.com/chrisfosterelli).
+Development was sponsored by [Two Story Robot](https://github.com/twostoryrobot).
 
 License
 -------
