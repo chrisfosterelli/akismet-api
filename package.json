@@ -1,7 +1,7 @@
 {
   "name": "akismet-api",
   "version": "2.2.0",
-  "description": "Nodejs bindings to the Akismet (http://akismet.com) spam detection service",
+  "description": "Nodejs bindings to the Akismet (https://akismet.com) spam detection service",
   "main": "lib/akismet.js",
   "dependencies": {
     "bluebird": "^3.1.1",

@@ -6,7 +6,7 @@ Akismet-api
 [![Download Count](https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square)](https://www.npmjs.com/package/akismet-api)
 [![License](https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square)](LICENSE.txt)
 
-Full Nodejs bindings to the Akismet (http://akismet.com) spam detection service.
+Full Nodejs bindings to the Akismet (https://akismet.com) spam detection service.
 
 Features:
 * Promise and callback support
@@ -35,7 +35,7 @@ There are a set of other avaliable default options visible in the source, but yo
 var akismet = require('akismet-api');
 var client = akismet.client({
   key  : 'myKey',                   // Required!
-  blog : 'http://myblog.com'        // Required!
+  blog : 'https://myblog.com'       // Required!
 });
 ```
 
@@ -80,12 +80,12 @@ The user_ip, user_agent, and referrer are required options. All other options ar
 client.checkSpam({
   user_ip : '123.123.123.123',              // Required!
   user_agent : 'MyUserAgent 1.0 Webkit',    // Required!
-  referrer : 'http://google.com',           // Required!
-  permalink : 'http://myblog.com/myPost',
+  referrer : 'https://google.com',          // Required!
+  permalink : 'https://myblog.com/myPost',
   comment_type : 'comment',
   comment_author : 'John Smith',
   comment_author_email : 'john.smith@gmail.com',
-  comment_author_url : 'http://johnsblog.com',
+  comment_author_url : 'https://johnsblog.com',
   comment_content : 'Very nice blog! Check out mine!',
   is_test : true // Default value is false
 }, function(err, spam) {
@@ -107,12 +107,12 @@ If Akismet reports something as not-spam, but it turns out to be spam anyways, w
 client.submitSpam({
   user_ip : '123.123.123.123',              // Required!
   user_agent : 'MyUserAgent 1.0 Webkit',    // Required!
-  referrer : 'http://google.com',           // Required!
-  permalink : 'http://myblog.com/myPost',
+  referrer : 'https://google.com',          // Required!
+  permalink : 'https://myblog.com/myPost',
   comment_type : 'comment',
   comment_author : 'John Smith',
   comment_author_email : 'john.smith@gmail.com',
-  comment_author_url : 'http://johnsblog.com',
+  comment_author_url : 'https://johnsblog.com',
   comment_content : 'Very nice blog! Check out mine!'
 }, function(err) {
   if (!err) {
@@ -130,12 +130,12 @@ If Akismet reports something as spam, but it turns out to not be spam anyways, w
 client.submitHam({
   user_ip : '123.123.123.123',              // Required!
   user_agent : 'MyUserAgent 1.0 Webkit',    // Required!
-  referrer : 'http://google.com',           // Required!
-  permalink : 'http://myblog.com/myPost',
+  referrer : 'https://google.com',          // Required!
+  permalink : 'https://myblog.com/myPost',
   comment_type : 'comment',
   comment_author : 'John Smith',
   comment_author_email : 'john.smith@gmail.com',
-  comment_author_url : 'http://johnsblog.com',
+  comment_author_url : 'https://johnsblog.com',
   comment_content : 'Very nice blog! Check out mine!'
 }, function(err) {
   if (!err) {
