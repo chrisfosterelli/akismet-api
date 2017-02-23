@@ -1,3 +1,13 @@
+2.2.0
+=====
+
+* Feature: Added `is_test` flag to `checkSpam()`
+
+2.1.1
+=====
+
+* Patch: Updated superagent to 2.0.0
+
 2.1.0
 =====
 
