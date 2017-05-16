@@ -10,10 +10,10 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "nock": "^9.0.6",
-    "mocha": "^3.0.2"
+    "mocha": "^3.4.1"
   },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha test/*.spec.js"
+    "test": "mocha test/*.spec.js"
   },
   "repository": {
     "type": "git",
