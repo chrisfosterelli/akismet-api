@@ -8,7 +8,7 @@
     "superagent": "^3.0.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.0.1",
     "nock": "^9.0.6",
     "mocha": "^3.4.1"
   },
