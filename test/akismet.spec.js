@@ -156,9 +156,9 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return falsey', function(done) {
+      it('should return undefined', function(done) {
         client.verifyKey(function(err, valid) {
-          expect(valid).to.be.falsey;
+          expect(valid).to.be.undefined;
           scope.done();
           done();
         });
@@ -186,10 +186,10 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return falsey', function(done) {
+      it('should return undefined', function(done) {
         client.verifyKey(function(err, valid) {
           expect(err).to.not.be.false;
-          expect(valid).to.be.falsey;
+          expect(valid).to.be.undefined;
           done();
         });
       });
@@ -314,11 +314,11 @@ describe('Akismet-api', function() {
           });
         });
 
-        it('should return falsey', function(done) {
+        it('should return undefined', function(done) {
           client.checkSpam({
             user_ip : '123.123.123.123'
           }, function(err, spam) {
-            expect(spam).to.be.falsey;
+            expect(spam).to.be.undefined;
             scope.done();
             done();
           });
@@ -354,11 +354,11 @@ describe('Akismet-api', function() {
           });
         });
 
-        it('should return falsey', function(done) {
+        it('should return undefined', function(done) {
           client.checkSpam({
             user_ip : '123.123.123.123'
           }, function(err, spam) {
-            expect(spam).to.be.falsey;
+            expect(spam).to.be.undefined;
             scope.done();
             done();
           });
@@ -390,11 +390,11 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return falsey', function(done) {
+      it('should return undefined', function(done) {
         client.checkSpam({
           user_ip : '123.123.123.123'
         }, function(err, spam) {
-          expect(spam).to.be.falsey;
+          expect(spam).to.be.undefined;
           done();
         });
       });
