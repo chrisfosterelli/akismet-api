@@ -19,11 +19,11 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey1',
           host : 'rest1.akismet.com'
         });
-        scope = nock('http://rest1.akismet.com')
+        scope = nock('https://rest1.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/verify-key')
         .reply(200, 'valid', {
@@ -56,11 +56,11 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey2',
           host : 'rest2.akismet.com'
         });
-        scope = nock('http://rest2.akismet.com')
+        scope = nock('https://rest2.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/verify-key')
         .reply(200, 'invalid', {
@@ -93,11 +93,11 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey2',
           host : 'rest2.akismet.com'
         });
-        scope = nock('http://rest2.akismet.com')
+        scope = nock('https://rest2.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/verify-key')
         .reply(200, 'whatisthiserror', {
@@ -129,7 +129,7 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey3',
           host : 'notarealdomain' // will fail!
         });
@@ -164,10 +164,10 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey4'
         });
-        scope = nock('http://testKey4.rest.akismet.com')
+        scope = nock('https://testKey4.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/comment-check')
         .reply(200, 'true', {
@@ -204,10 +204,10 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey5'
         });
-        scope = nock('http://testKey5.rest.akismet.com')
+        scope = nock('https://testKey5.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/comment-check')
         .reply(200, 'false', {
@@ -246,10 +246,10 @@ describe('callbacks', function() {
         
         beforeEach(function() {
           client = Akismet.client({
-            blog : 'http://example.com',
+            blog : 'https://example.com',
             key  : 'testKey6'
           });
-          scope = nock('http://testKey6.rest.akismet.com')
+          scope = nock('https://testKey6.rest.akismet.com')
           .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
           .post('/1.1/comment-check')
           .reply(200, 'notAValidValueAtAll', {
@@ -287,10 +287,10 @@ describe('callbacks', function() {
         
         beforeEach(function() {
           client = Akismet.client({
-            blog : 'http://example.com',
+            blog : 'https://example.com',
             key  : 'testKey6'
           });
-          scope = nock('http://testKey6.rest.akismet.com')
+          scope = nock('https://testKey6.rest.akismet.com')
           .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
           .post('/1.1/comment-check')
           .reply(200, 'notAValidValueAtAll', {
@@ -328,7 +328,7 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey7',
           host : 'notarealdomain' // will fail!
         });
@@ -366,10 +366,10 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey8'
         });
-        scope = nock('http://testKey8.rest.akismet.com')
+        scope = nock('https://testKey8.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-spam')
         .reply(200, 'Thanks for making the web a better place.', {
@@ -396,10 +396,10 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey9'
         });
-        scope = nock('http://testKey9.rest.akismet.com')
+        scope = nock('https://testKey9.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-spam')
         .reply(500, {
@@ -425,7 +425,7 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey10',
           host : 'notarealdomain' // will fail!
         });
@@ -454,10 +454,10 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey11'
         });
-        scope = nock('http://testKey11.rest.akismet.com')
+        scope = nock('https://testKey11.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-ham')
         .reply(200, 'Thanks for making the web a better place.', {
@@ -484,10 +484,10 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey12'
         });
-        scope = nock('http://testKey12.rest.akismet.com')
+        scope = nock('https://testKey12.rest.akismet.com')
         .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
         .post('/1.1/submit-ham')
         .reply(500, {
@@ -513,7 +513,7 @@ describe('callbacks', function() {
       
       beforeEach(function() {
         client = Akismet.client({
-          blog : 'http://example.com',
+          blog : 'https://example.com',
           key  : 'testKey13',
           host : 'notarealdomain' // will fail!
         });
