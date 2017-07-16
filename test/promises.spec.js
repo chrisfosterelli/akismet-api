@@ -1,67 +1,16 @@
 
-/* akismet.spec.js
- * Describes tests for the akismet-api module */
+/* promises.spec.js
+ * Describes tests for the akismet-api promises API */
 
 var chai    = require('chai');
 var nock    = require('nock');
-var Promise = require('bluebird');
 var Akismet = require('../lib/akismet');
-var pjson   = require('../package.json');
 
 var expect = chai.expect;
 
-describe('Akismet-api', function() {
-
-  describe('#client()', function() {
- 
-    it('should return an instance of Akismet', function() {
-      var client = Akismet.client({
-        blog   : 'http://example.com',
-        apiKey : 'testKey'
-      });
-      expect(client instanceof Akismet.Client).to.be.true;
-    });
- 
-    it('should assign the passed-in variables', function() {
-      var client = Akismet.client({
-        blog      : 'http://example.com',
-        key       : 'testKey',
-        host      : 'test.akismet.com',
-        endpoint  : 'endpoint.akismet.com',
-        userAgent : 'MyAgent 1.0',
-        version   : '9.9',
-        port      : 500
-      });
-      expect(client.port).to.equal(500);
-      expect(client.key).to.equal('testKey');
-      expect(client.blog).to.equal('http://example.com');
-      expect(client.version).to.equal('9.9');
-      expect(client.host).to.equal('test.akismet.com');
-      expect(client.endpoint).to.equal('endpoint.akismet.com');
-      expect(client.userAgent).to.equal('MyAgent 1.0');
-    });
-
-    it('should provide default values', function() {
-      var client = Akismet.client();
-      expect(client.port).to.equal(80);
-      expect(client.key).to.be.undefined;
-      expect(client.blog).to.be.undefined;
-      expect(client.version).to.equal('1.1');
-      expect(client.host).to.equal('rest.akismet.com');
-      expect(client.endpoint).to.equal('undefined.rest.akismet.com/1.1/');
-      expect(client.userAgent).to.equal(
-        'Node.js/' + process.version + ' | Akismet-api/' + pjson.version
-      );
-    });
-
-  });
+describe('promises', function() {
 
   describe('client#verifyKey()', function() {
-
-    it('should support promises', function() {
-      var client = Akismet.client();
-      expect(client.verifyKey()).to.be.an.instanceof(Promise);
-    });
   
     describe('when the request returns \'valid\'', function() {
 
@@ -82,19 +31,11 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return true', function(done) {
-        client.verifyKey(function(err, valid) {
+      it('should resolve with true', function() {
+        return client.verifyKey()
+        .then(function(valid) {
           expect(valid).to.be.true;
           scope.done();
-          done();
-        });
-      });
-
-      it('should not return an error', function(done) {
-        client.verifyKey(function(err, valid) {
-          expect(err).to.be.null;
-          scope.done();
-          done();
         });
       });
 
@@ -119,19 +60,11 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return false', function(done) {
-        client.verifyKey(function(err, valid) {
+      it('should resolve with false', function() {
+        return client.verifyKey()
+        .then(function(valid) {
           expect(valid).to.be.false;
           scope.done();
-          done();
-        });
-      });
-
-      it('should not return an error', function(done) {
-        client.verifyKey(function(err, valid) {
-          expect(err).to.be.null;
-          scope.done();
-          done();
         });
       });
 
@@ -156,19 +89,15 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return undefined', function(done) {
-        client.verifyKey(function(err, valid) {
-          expect(valid).to.be.undefined;
-          scope.done();
-          done();
-        });
-      });
-
-      it('should return the response', function(done) {
-        client.verifyKey(function(err, valid) {
+      it('should reject with the response', function() {
+        return client.verifyKey()
+        .then(function(valid) {
+          var msg = 'Unexpectedly resolved';
+          throw new Error(msg);
+        })
+        .catch(function(err) {
           expect(err.message).to.equal('whatisthiserror');
           scope.done();
-          done();
         });
       });
 
@@ -186,19 +115,14 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return undefined', function(done) {
-        client.verifyKey(function(err, valid) {
-          expect(err).to.not.be.false;
-          expect(valid).to.be.undefined;
-          done();
-        });
-      });
-
-      it('should return the error', function(done) {
-        client.verifyKey(function(err, valid) {
+      it('should reject with the error', function() {
+        return client.verifyKey()
+        .then(function(valid) {
+          var msg = 'Unexpectedly resolved';
+          throw new Error(msg);
+        })
+        .catch(function(err) {
           expect(err.message).to.include('ENOTFOUND');
-          expect(err).to.not.be.null;
-          done();
         });
       });
 
@@ -207,11 +131,6 @@ describe('Akismet-api', function() {
   });
 
   describe('client#checkSpam()', function() {
-
-    it('should support promises', function() {
-      var client = Akismet.client();
-      expect(client.verifyKey()).to.be.an.instanceof(Promise);
-    });
     
     describe('when the request returns \'true\'', function() {
     
@@ -231,23 +150,13 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return true', function(done) {
-        client.checkSpam({
+      it('should resolve with true', function() {
+        return client.checkSpam({
           user_ip : '123.123.123.123'
-        }, function(err, spam) {
+        })
+        .then(function(spam) {
           expect(spam).to.be.true;
           scope.done();
-          done();
-        });
-      });
-    
-      it('should not return an error', function(done) {
-        client.checkSpam({
-          user_ip : '123.123.123.123'
-        }, function(err, spam) {
-          expect(err).to.be.null;
-          scope.done();
-          done();
         });
       });
     
@@ -271,23 +180,13 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return false', function(done) {
-        client.checkSpam({
+      it('should resolve with false', function() {
+        return client.checkSpam({
           user_ip : '123.123.123.123'
-        }, function(err, spam) {
+        })
+        .then(function(spam) {
           expect(spam).to.be.false;
           scope.done();
-          done();
-        });
-      });
-    
-      it('should not return an error', function(done) {
-        client.checkSpam({
-          user_ip : '123.123.123.123'
-        }, function(err, spam) {
-          expect(err).to.be.null;
-          scope.done();
-          done();
         });
       });
     
@@ -314,23 +213,17 @@ describe('Akismet-api', function() {
           });
         });
 
-        it('should return undefined', function(done) {
-          client.checkSpam({
+        it('should reject with the akismet debug error', function() {
+          return client.checkSpam({
             user_ip : '123.123.123.123'
-          }, function(err, spam) {
-            expect(spam).to.be.undefined;
-            scope.done();
-            done();
-          });
-        });
-      
-        it('should return the akismet debug error', function(done) {
-          client.checkSpam({
-            user_ip : '123.123.123.123'
-          }, function(err, spam) {
+          })
+          .then(function(spam) {
+            var msg = 'Unexpectedly resolved';
+            throw new Error(msg);
+          })
+          .catch(function(err) {
             expect(err.message).to.equal('You did something wrong!');
             scope.done();
-            done();
           });
         });
 
@@ -353,24 +246,18 @@ describe('Akismet-api', function() {
             'Content-Type' : 'text/plain'
           });
         });
-
-        it('should return undefined', function(done) {
-          client.checkSpam({
-            user_ip : '123.123.123.123'
-          }, function(err, spam) {
-            expect(spam).to.be.undefined;
-            scope.done();
-            done();
-          });
-        });
       
-        it('should return the response', function(done) {
-          client.checkSpam({
+        it('should reject with the response', function() {
+          return client.checkSpam({
             user_ip : '123.123.123.123'
-          }, function(err, spam) {
+          })
+          .then(function(spam) {
+            var msg = 'Unexpectedly resolved';
+            throw new Error(msg);
+          })
+          .catch(function(err) {
             expect(err.message).to.equal('notAValidValueAtAll');
             scope.done();
-            done();
           });
         });
 
@@ -390,22 +277,16 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return undefined', function(done) {
-        client.checkSpam({
+      it('should reject with the error', function() {
+        return client.checkSpam({
           user_ip : '123.123.123.123'
-        }, function(err, spam) {
-          expect(spam).to.be.undefined;
-          done();
-        });
-      });
-    
-      it('should return the error', function(done) {
-        client.checkSpam({
-          user_ip : '123.123.123.123'
-        }, function(err, spam) {
+        })
+        .then(function(spam) {
+          var msg = 'Unexpectedly resolved';
+          throw new Error(msg);
+        })
+        .catch(function(err) {
           expect(err.message).to.include('ENOTFOUND');
-          expect(err).to.not.be.null;
-          done();
         });
       });
 
@@ -414,11 +295,6 @@ describe('Akismet-api', function() {
   });
 
   describe('client#submitSpam()', function() {
-
-    it('should support promises', function() {
-      var client = Akismet.client();
-      expect(client.verifyKey()).to.be.an.instanceof(Promise);
-    });
  
     describe('when the request returns a 2XX status code ', function() {
     
@@ -438,13 +314,9 @@ describe('Akismet-api', function() {
         });
       });
  
-      it('should return null', function(done) {
-        client.submitSpam({
+      it('should resolve', function() {
+        return client.submitSpam({
           user_ip : '123.123.123.123'
-        }, function(err) {
-          expect(err).to.be.null;
-          scope.done();
-          done();
         });
       });
  
@@ -468,13 +340,17 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return the message', function(done) {
-        client.submitSpam({
+      it('should reject with the message', function() {
+        return client.submitSpam({
           user_ip : '123.123.123.123'
-        }, function(err) {
+        })
+        .then(function() {
+          var msg = 'Unexpectedly resolved';
+          throw new Error(msg);
+        })
+        .catch(function(err) {
           expect(err.message).to.equal('Internal Server Error');
           scope.done();
-          done();
         });
       });
  
@@ -492,13 +368,16 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return the error', function(done) {
-        client.submitSpam({
+      it('should reject with the error', function() {
+        return client.submitSpam({
           user_ip : '123.123.123.123'
-        }, function(err) {
+        })
+        .then(function() {
+          var msg = 'Unexpectedly resolved';
+          throw new Error(msg);
+        })
+        .catch(function(err) {
           expect(err.message).to.include('ENOTFOUND');
-          expect(err).to.not.be.null;
-          done();
         });
       });
 
@@ -507,11 +386,6 @@ describe('Akismet-api', function() {
   });
 
   describe('client#submitHam()', function() {
-
-    it('should support promises', function() {
-      var client = Akismet.client();
-      expect(client.verifyKey()).to.be.an.instanceof(Promise);
-    });
     
     describe('when the request returns a 2XX status code ', function() {
     
@@ -531,13 +405,9 @@ describe('Akismet-api', function() {
         });
       });
  
-      it('should return null', function(done) {
-        client.submitHam({
+      it('should resolve', function() {
+        return client.submitHam({
           user_ip : '123.123.123.123'
-        }, function(err) {
-          expect(err).to.be.null;
-          scope.done();
-          done();
         });
       });
  
@@ -561,13 +431,17 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return the message', function(done) {
-        client.submitHam({
+      it('should reject with the message', function() {
+        return client.submitHam({
           user_ip : '123.123.123.123'
-        }, function(err) {
+        })
+        .then(function() {
+          var msg = 'Unexpectedly resolved';
+          throw new Error(msg);
+        })
+        .catch(function(err) {
           expect(err.message).to.equal('Internal Server Error');
           scope.done();
-          done();
         });
       });
  
@@ -585,13 +459,16 @@ describe('Akismet-api', function() {
         });
       });
 
-      it('should return the error', function(done) {
-        client.submitHam({
+      it('should reject with the error', function() {
+        return client.submitHam({
           user_ip : '123.123.123.123'
-        }, function(err) {
+        })
+        .then(function() {
+          var msg = 'Unexpectedly resolved';
+          throw new Error(msg);
+        })
+        .catch(function(err) {
           expect(err.message).to.include('ENOTFOUND');
-          expect(err).to.not.be.null;
-          done();
         });
       });
 
