@@ -1,3 +1,20 @@
+3.0.0
+=====
+
+* Feature: Added official support for Node 8.x
+* Feature: Added official support for Node 7.x
+* Feature: Added support for `is_test` in `submitHam` and `submitSpam`
+* Feature: Added test suite for the client promise API
+* Feature: Requests to Akismet now default to HTTPS
+* Feature: Added `protocol` option to the constructor
+* Patch: Updated superagent to 3.0.0
+* Patch: Updated nock to 9.0.6
+* Patch: Updated chai to 4.0.1
+* Patch: Updated mocha to 3.4.1
+* Patch: Removed dependency on `setimmediate`
+* **Breaking:** Removed support for Node 0.8. Node 0.8 reached end-of-life a 
+very long time ago, you should upgrade if you are still using it.
+
 2.2.0
 =====
 
