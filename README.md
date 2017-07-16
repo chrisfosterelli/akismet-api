@@ -113,7 +113,8 @@ client.submitSpam({
   comment_author : 'John Smith',
   comment_author_email : 'john.smith@gmail.com',
   comment_author_url : 'https://johnsblog.com',
-  comment_content : 'Very nice blog! Check out mine!'
+  comment_content : 'Very nice blog! Check out mine!',
+  is_test : true // Default value is false
 }, function(err) {
   if (!err) {
     console.log('Spam reported!');
@@ -136,7 +137,8 @@ client.submitHam({
   comment_author : 'John Smith',
   comment_author_email : 'john.smith@gmail.com',
   comment_author_url : 'https://johnsblog.com',
-  comment_content : 'Very nice blog! Check out mine!'
+  comment_content : 'Very nice blog! Check out mine!',
+  is_test : true // Default value is false
 }, function(err) {
   if (!err) {
     console.log('Non-spam reported!');
