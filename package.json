@@ -28,6 +28,6 @@
   "author": "Chris Foster <chris.james.foster@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.10"
   }
 }
