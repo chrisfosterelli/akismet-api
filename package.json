@@ -5,7 +5,7 @@
   "main": "lib/akismet.js",
   "dependencies": {
     "bluebird": "^3.1.1",
-    "superagent": "^3.0.0"
+    "superagent": "^3.6.1"
   },
   "devDependencies": {
     "chai": "^4.0.1",
