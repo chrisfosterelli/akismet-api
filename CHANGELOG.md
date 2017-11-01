@@ -1,3 +1,13 @@
+4.0.0
+=====
+
+* Feature: Add official support for Node 9.x
+* Patch: Update superagent to 3.6.1
+* Patch: Update mocha to 4.0.0
+* **Breaking:** Removed support for node 0.10 (end of life)
+* **Breaking:** Removed support for node 0.12 (end of life)
+* **Breaking:** Removed support for io.js (end of life)
+
 3.0.0
 =====
 
