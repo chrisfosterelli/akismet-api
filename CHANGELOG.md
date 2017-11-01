@@ -1,6 +1,11 @@
 4.0.0
 =====
 
+* Patch: Update superagent to 3.8.0
+
+4.0.0
+=====
+
 * Feature: Add official support for Node 9.x
 * Patch: Update superagent to 3.6.1
 * Patch: Update mocha to 4.0.0
