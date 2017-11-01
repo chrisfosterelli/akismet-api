@@ -1,4 +1,4 @@
-4.0.0
+4.0.1
 =====
 
 * Patch: Update superagent to 3.8.0
