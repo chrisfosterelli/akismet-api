@@ -1,3 +1,10 @@
+4.1.0
+=====
+
+* Feature: Added support for Akismet's `comment_date_gmt`
+* Feature: Added support for Akismet's `comment_post_modified_gmt`
+* Patch: Updated mocha to 5.0.0
+
 4.0.1
 =====
 
