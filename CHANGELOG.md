@@ -1,3 +1,8 @@
+4.2.0
+=====
+
+* Feature: Added support for Akismet's `user_role`
+
 4.1.0
 =====
 
