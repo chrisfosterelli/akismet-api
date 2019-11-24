@@ -55,7 +55,7 @@ client.verifyKey()
 })
 .catch(function(err) {
   console.log('Check failed: ' + err.message);
-}):
+});
 ```
 
 Verifying your Key
