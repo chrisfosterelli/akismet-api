@@ -9,11 +9,13 @@
   },
   "devDependencies": {
     "chai": "^4.0.1",
+    "mocha": "^6.2.2",
     "nock": "^11.7.0",
-    "mocha": "^6.2.2"
+    "prettier": "^1.19.1"
   },
   "scripts": {
-    "test": "mocha test/*.spec.js"
+    "test": "prettier --check '**/*.js' && mocha test/*.spec.js",
+    "prettier": "prettier --write '**/*.js'"
   },
   "repository": {
     "type": "git",
