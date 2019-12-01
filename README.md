@@ -149,8 +149,10 @@ client.submitHam({
 Testing
 -------
 
+To run tests, just use `npm test`. To also run the optional integration tests,
+include a valid Akismet API key in the AKISMET_KEY environment variable.
+
 ```bash
-cd node_modules/akismet-api
 npm test
 ```
 
