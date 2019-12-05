@@ -1,156 +1,143 @@
 Akismet-api
 ===========
 
-[![Build Status](https://img.shields.io/travis/com/chrisfosterelli/akismet-api/master.svg?maxAge=3600&style=flat-square)](https://travis-ci.com/chrisfosterelli/akismet-api)
-[![Dependency Status](https://img.shields.io/david/chrisfosterelli/akismet-api.svg?maxAge=3600&style=flat-square)](https://david-dm.org/chrisfosterelli/akismet-api)
-[![Download Count](https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square)](https://www.npmjs.com/package/akismet-api)
-[![License](https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square)](LICENSE.txt)
+[![Build Status][img:build]][build]
+[![Dependency Status][img:deps]][deps]
+[![Download Count][img:downloads]][downloads]
+[![License][img:license]][license]
 
-Full Nodejs bindings to the Akismet (https://akismet.com) spam detection service.
+Full Nodejs bindings to the Akismet (https://akismet.com) spam detection
+service.
 
 Features:
-* Promise and callback support
-* Supports all active versions of node (4 to 10)
+* API support for async/await, promises, and callbacks
+* Supports all active versions of node (8 to 13)
 * Supports all Akismet API features
-* Uses a modern HTTP client
-* Complete test suite
-* No coffeescript
+* Complete set of unit and integration tests
+* Idiomatic JS parameters (with backward compatability)
+* Trusted by many projects (like [Coral][coral]!)
 
-_Upgrading to 4.0?_ You likely don't need to change anything, but check out the [changelog](CHANGELOG.md).
+_Upgrading to 5.0?_ The docs have changed a fair bit but everything is backward
+compatible on supported node versions, so you likely don't need to change
+anything! Check out the [changelog][changelog].
+
+**These docs below are with ES6 async/await usage, but if you prefer another
+API you can also use this library [with promises][promises] and [with
+callbacks][callbacks]!**
 
 Installing
 --------
 
 ```bash
-npm install akismet-api
+npm install --save akismet-api
 ```
 
 Creating the Client
 -------------------
 
-The blog and key values are required by Akismet.
-There are a set of other avaliable default options visible in the source, but you likely will not need to change those.
+Your blog URL and API key are required by Akismet and are all you will need to
+get started! For a full list of available client parameters and alternative
+constructors, check out the [client documentation][client].
 
 ```javascript
-var akismet = require('akismet-api');
-var client = akismet.client({
-  key  : 'myKey',                   // Required!
-  blog : 'https://myblog.com'       // Required!
-});
-```
+import { getClient } from 'akismet-api'
 
-Promises and Callbacks
-----------------------
-
-All of the function methods below support both promises and callbacks!
-The returned promises use the [Bluebird](https://github.com/petkaantonov/bluebird) promise library.
-The following documentation primarily uses the callback version, but to return a promise simply don't provide a callback.
-Here is an example of the promise version of the `verifyKey()` function:
-
-```javascript
-client.verifyKey()
-.then(function(valid) {
-  if (valid) console.log('Valid key!');
-  else console.log('Invalid key!');
-})
-.catch(function(err) {
-  console.log('Check failed: ' + err.message);
-});
+const key = 'myKey'
+const blog = 'https://myblog.com'
+const client = getClient({ key, blog })
 ```
 
 Verifying your Key
 ------------------
 
-It's a good idea to verify your key before use. If your key returns as invalid, the error field will contain the debug help message returned by Akismet.
+It's a good idea to verify your key before use.
 
 ```javascript
-client.verifyKey(function(err, valid) {
-  if (err) console.log('Error:', err.message);
-  if (valid) console.log('Valid key!');
-  else console.log('Invalid key!');
-});
+try {
+  const isValid = await client.verifyKey()
+
+  if (valid) console.log('Valid key!')
+  else console.log('Invalid key!')
+} catch (e) {
+  console.error('Could not reach Akismet:', e.message)
+}
+```
+
+Creating a Comment
+------------------
+
+A comment, at the bare minimum, must have the commenter's IP and user agent.
+You can provide more than that for better accuracy and doing so is strongly
+recommended. The following is a basic example, but see our documentation on the
+[comment data structure] for a complete list of fields you can provide.
+
+```
+const comment = {
+  ip: '123.123.123.123',
+  useragent: 'CommentorAgent 1.0 WebKit',
+  content: 'Very nice blog! Check out mine!',
+  email: 'not.a.spammer@gmail.com'
+}
 ```
 
 Checking for Spam
 -----------------
 
-The user_ip, user_agent, and referrer are required options. All other options are optional, but will provide you with better spam detection accuracy.
+Once you have a comment, we can check it! This tells you if it is spam or not.
+If Akismet cannot be reached or returns an error, `checkSpam` will throw an
+exception.
 
 ```javascript
-client.checkSpam({
-  user_ip : '123.123.123.123',              // Required!
-  user_agent : 'MyUserAgent 1.0 Webkit',    // Required!
-  referrer : 'https://google.com',          // Required!
-  permalink : 'https://myblog.com/myPost',
-  comment_type : 'comment',
-  comment_author : 'John Smith',
-  comment_author_email : 'john.smith@gmail.com',
-  comment_author_url : 'https://johnsblog.com',
-  comment_content : 'Very nice blog! Check out mine!',
-  is_test : true // Default value is false
-}, function(err, spam) {
-  if (err) console.log ('Error!');
-  if (spam) {
-    console.log('OMG Spam!');
-  } else {
-    console.log('Totally not spam');
-  }
-});
+try {
+  const isSpam = await client.checkSpam(comment)
+
+  if (spam) console.log('OMG Spam!')
+  else console.log('Totally not spam')
+} catch (e) {
+  console.error('Something went wrong:', e.message)
+}
 ```
 
 Submitting False Negatives
 --------------------------
 
-If Akismet reports something as not-spam, but it turns out to be spam anyways, we can report this to Akismet via this API call.
+If Akismet reports something as not-spam, but it turns out to be spam anyways,
+we can report this to Akismet to help improve their accuracy in the future.
 
 ```javascript
-client.submitSpam({
-  user_ip : '123.123.123.123',              // Required!
-  user_agent : 'MyUserAgent 1.0 Webkit',    // Required!
-  referrer : 'https://google.com',          // Required!
-  permalink : 'https://myblog.com/myPost',
-  comment_type : 'comment',
-  comment_author : 'John Smith',
-  comment_author_email : 'john.smith@gmail.com',
-  comment_author_url : 'https://johnsblog.com',
-  comment_content : 'Very nice blog! Check out mine!',
-  is_test : true // Default value is false
-}, function(err) {
-  if (!err) {
-    console.log('Spam reported!');
-  }
-});
+try {
+  await client.submitSpam(comment)
+  console.log('Spam reported!')
+} catch (e) {
+  console.error('Something went wrong:', e.message)
+}
 ```
 
 Submitting False Positives
 --------------------------
 
-If Akismet reports something as spam, but it turns out to not be spam anyways, we can report this to Akismet via this API call.
+If Akismet reports something as spam, but it turns out to not be spam, we can
+report this to Akismet too.
 
 ```javascript
-client.submitHam({
-  user_ip : '123.123.123.123',              // Required!
-  user_agent : 'MyUserAgent 1.0 Webkit',    // Required!
-  referrer : 'https://google.com',          // Required!
-  permalink : 'https://myblog.com/myPost',
-  comment_type : 'comment',
-  comment_author : 'John Smith',
-  comment_author_email : 'john.smith@gmail.com',
-  comment_author_url : 'https://johnsblog.com',
-  comment_content : 'Very nice blog! Check out mine!',
-  is_test : true // Default value is false
-}, function(err) {
-  if (!err) {
-    console.log('Non-spam reported!');
-  }
-});
+try {
+  await client.submitHam(comment)
+  console.log('Non-spam reported!')
+} catch (e) {
+  console.error('Something went wrong:', e.message)
+}
 ```
 
 Testing
 -------
 
-To run tests, just use `npm test`. To also run the optional integration tests,
-include a valid Akismet API key in the AKISMET_KEY environment variable.
+If you are running integration tests on your app with Akismet, you should set 
+`isTest : true` in your comments! That way, your testing data won't affect
+Akismet.
+
+To run the library's tests, just use `npm test`. To also run the optional
+integration tests, include a valid Akismet API key in the `AKISMET_KEY`
+environment variable.
 
 ```bash
 npm test
@@ -159,12 +146,28 @@ npm test
 Credits
 -------
 
-Author and maintainer is [Chris Foster](https://github.com/chrisfosterelli).
-Development was sponsored by [Two Story Robot](https://github.com/twostoryrobot).
+Author and maintainer is [Chris Foster][chrisfosterelli].
+Development was sponsored by [Two Story Robot][twostoryrobot]
 
 License
 -------
 
 Released under the MIT license.
 
-See [LICENSE.txt](LICENSE.txt) for more information.
+See [LICENSE.txt][license] for more information.
+
+[img:build]: https://img.shields.io/travis/com/chrisfosterelli/akismet-api/master.svg?maxAge=3600&style=flat-square
+[img:deps]: https://img.shields.io/david/chrisfosterelli/akismet-api.svg?maxAge=3600&style=flat-square
+[img:downloads]: https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square
+[img:license]: https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square
+[build]: https://travis-ci.com/chrisfosterelli/akismet-api
+[deps]: https://david-dm.org/chrisfosterelli/akismet-api
+[downloads]: https://www.npmjs.com/package/akismet-api
+[license]: LICENSE.txt
+[coral]: https://github.com/coralproject/talk
+[changelog]: CHANGELOG.md
+[chrisfosterelli]: https://github.com/chrisfosterelli
+[twostoryrobot]: https://github.com/twostoryrobot
+[promises]: docs/promises.md
+[callbacks]: docs/callbacks.md
+[client]: docs/client.md
