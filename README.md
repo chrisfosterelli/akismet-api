@@ -22,14 +22,14 @@ compatible on supported node versions, so you likely don't need to change
 anything! Check out the [changelog][changelog].
 
 **These docs below are with ES6 async/await usage, but if you prefer another
-API you can also use this library [with promises][promises] and [with
+API you can also use this library [with promises][promises] or [with
 callbacks][callbacks]!**
 
 Installing
 --------
 
 ```bash
-npm install --save akismet-api
+$ npm install --save akismet-api
 ```
 
 Creating the Client
@@ -40,11 +40,11 @@ get started! For a full list of available client parameters and alternative
 constructors, check out the [client documentation][client].
 
 ```javascript
-import { getClient } from 'akismet-api'
+import { AkismetClient } from 'akismet-api'
 
 const key = 'myKey'
 const blog = 'https://myblog.com'
-const client = getClient({ key, blog })
+const client = new AkismetClient({ key, blog })
 ```
 
 Verifying your Key
@@ -56,7 +56,7 @@ It's a good idea to verify your key before use.
 try {
   const isValid = await client.verifyKey()
 
-  if (valid) console.log('Valid key!')
+  if (isValid) console.log('Valid key!')
   else console.log('Invalid key!')
 } catch (e) {
   console.error('Could not reach Akismet:', e.message)
@@ -69,14 +69,16 @@ Creating a Comment
 A comment, at the bare minimum, must have the commenter's IP and user agent.
 You can provide more than that for better accuracy and doing so is strongly
 recommended. The following is a basic example, but see our documentation on the
-[comment data structure] for a complete list of fields you can provide.
+[comment data structure][comments] for a complete list of fields you can
+provide.
 
-```
+```javascript
 const comment = {
   ip: '123.123.123.123',
-  useragent: 'CommentorAgent 1.0 WebKit',
+  useragent: 'CommentorsAgent 1.0 WebKit',
   content: 'Very nice blog! Check out mine!',
-  email: 'not.a.spammer@gmail.com'
+  email: 'not.a.spammer@gmail.com',
+  name: 'John Doe'
 }
 ```
 
@@ -91,7 +93,7 @@ exception.
 try {
   const isSpam = await client.checkSpam(comment)
 
-  if (spam) console.log('OMG Spam!')
+  if (isSpam) console.log('OMG Spam!')
   else console.log('Totally not spam')
 } catch (e) {
   console.error('Something went wrong:', e.message)
@@ -168,6 +170,7 @@ See [LICENSE.txt][license] for more information.
 [changelog]: CHANGELOG.md
 [chrisfosterelli]: https://github.com/chrisfosterelli
 [twostoryrobot]: https://github.com/twostoryrobot
+[comments]: docs/comments.md
 [promises]: docs/promises.md
 [callbacks]: docs/callbacks.md
 [client]: docs/client.md
