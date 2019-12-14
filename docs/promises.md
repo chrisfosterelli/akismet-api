@@ -54,13 +54,13 @@ It's a good idea to verify your key before use.
 
 ```javascript
 client.verifyKey()
-.then(isValid => {
-  if (isValid) console.log('Valid key!')
-  else console.log('Invalid key!')
-})
-.catch(err => {
-  console.error('Error:', err.message)
-})
+  .then(isValid => {
+    if (isValid) console.log('Valid key!')
+    else console.log('Invalid key!')
+  })
+  .catch(err => {
+    console.error('Error:', err.message)
+  })
 ```
 
 Creating a Comment
@@ -91,13 +91,13 @@ exception.
 
 ```javascript
 client.checkSpam(comment)
-.then(isSpam => {
-  if (isSpam) console.log('OMG Spam!')
-  else console.log('Totally not spam')
-})
-.catch(err => {
-  console.error('Error:', err.message)
-})
+  .then(isSpam => {
+    if (isSpam) console.log('OMG Spam!')
+    else console.log('Totally not spam')
+  })
+  .catch(err => {
+    console.error('Error:', err.message)
+  })
 ```
 
 Submitting False Negatives
@@ -108,8 +108,8 @@ we can report this to Akismet to help improve their accuracy in the future.
 
 ```javascript
 client.submitSpam(comment)
-.then(() => console.log('Spam reported!'))
-.catch(err => console.error('Error:', err.message))
+  .then(() => console.log('Spam reported!'))
+  .catch(err => console.error('Error:', err.message))
 ```
 
 Submitting False Positives
@@ -120,8 +120,8 @@ report this to Akismet too.
 
 ```javascript
 client.submitHam(comment)
-.then(() => console.log('Non-spam reported!'))
-.catch(err => console.error('Error:', err.message))
+  .then(() => console.log('Non-spam reported!'))
+  .catch(err => console.error('Error:', err.message))
 ```
 
 Testing

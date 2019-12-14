@@ -116,9 +116,9 @@ If Akismet reports something as spam, but it turns out to not be spam, we can
 report this to Akismet too.
 
 ```javascript
-client.submitSpam(comment, function(err) {
+client.submitHam(comment, function(err) {
   if (err) return console.error('Error:', err.message);
-  console.log('Spam reported!');
+  console.log('Non-spam reported!');
 });
 ```
 

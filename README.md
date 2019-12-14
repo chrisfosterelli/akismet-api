@@ -58,8 +58,8 @@ try {
 
   if (isValid) console.log('Valid key!')
   else console.log('Invalid key!')
-} catch (e) {
-  console.error('Could not reach Akismet:', e.message)
+} catch (err) {
+  console.error('Could not reach Akismet:', err.message)
 }
 ```
 
@@ -95,8 +95,8 @@ try {
 
   if (isSpam) console.log('OMG Spam!')
   else console.log('Totally not spam')
-} catch (e) {
-  console.error('Something went wrong:', e.message)
+} catch (err) {
+  console.error('Something went wrong:', err.message)
 }
 ```
 
@@ -110,8 +110,8 @@ we can report this to Akismet to help improve their accuracy in the future.
 try {
   await client.submitSpam(comment)
   console.log('Spam reported!')
-} catch (e) {
-  console.error('Something went wrong:', e.message)
+} catch (err) {
+  console.error('Something went wrong:', err.message)
 }
 ```
 
@@ -125,8 +125,8 @@ report this to Akismet too.
 try {
   await client.submitHam(comment)
   console.log('Non-spam reported!')
-} catch (e) {
-  console.error('Something went wrong:', e.message)
+} catch (err) {
+  console.error('Something went wrong:', err.message)
 }
 ```
 
