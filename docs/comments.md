@@ -5,7 +5,7 @@ Akismet-api provides a "javascript" version of the Akismet API. We've converted
 the snake case API attributes from Akismet into more idiomatic javascript
 variables. If you prefer the original, you can use them and they will work too.
 
-These are some key attributes that really help with accuracy:
+Provide as many of these as you can as it really helps with accuracy.
 
 | Parameter | Akismet API Name | Description |
 | --- | --- | --- |
@@ -16,9 +16,9 @@ These are some key attributes that really help with accuracy:
 | `email` | `comment_author_email` | The commentor's email |
 | `content` | `comment_content` | The actual content of the comment |
 | `isTest` | `is_test` | Set this to `true` for your automated tests |
-| `permalink` | `permalink` | A permalink to the page containing the comment | 
 | `type` | `comment_type` | The type of comment (e.g. "comment", "reply", "forum-post", "blog-post") |
 | `date` | `comment_date_gmt` | The ISO 8601 format of the comment date. Defaults to current time |
-| `dateModified` | `comment_post_modfied_gmt` | The ISO8601 format of the permalink's date |
+| `permalink` | `permalink` | A permalink to the page containing the comment | 
+| `permanlinkDate` | `comment_post_modfied_gmt` | The ISO8601 format of the permalink's date |
 | `url` | `comment_author_url` | The commentor's URL (only some sites collect this) |
 | `role` | `user_role` | The commentor's 'role'. If set to 'administrator', it will never be marked spam |

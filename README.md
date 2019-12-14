@@ -26,7 +26,7 @@ API you can also use this library [with promises][promises] or [with
 callbacks][callbacks]!**
 
 Installing
---------
+----------
 
 ```bash
 $ npm install --save akismet-api
