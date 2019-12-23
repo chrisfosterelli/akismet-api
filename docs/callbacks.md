@@ -42,8 +42,8 @@ constructors, check out the [client documentation][client].
 ```javascript
 var Akismet = require('akismet-api');
 var client = Akismet.client({
-  blog : 'https://myblog.com',
-  key : 'myKey'
+  blog: 'https://myblog.com',
+  key: 'myKey'
 });
 ```
 
