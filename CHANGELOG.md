@@ -1,3 +1,28 @@
+5.0.0
+=====
+
+* Feature: Add a new JS-idiomatic comment API (*fully backward compatible*)
+* Feature: Add official support for Node 13.x
+* Feature: Add official support for Node 12.x
+* Feature: Add official support for Node 10.x
+* Feature: Add support for `blog_lang` and `blog_charset`
+* Feature: Add support for `recheck_reason`
+* Feature: Added API support for async/await usage
+* Patch: Update nock to 11.7.0
+* Patch: Update mocha to 6.2.2
+* Patch: Update superagent to 5.1.1
+* Documentation overhaul
+* Added package-lock
+* Migrated from Greenkeeper to Renovate
+* Added prettier
+* Added optional integration tests
+* Switched CI/CD to travis.com
+* Upgraded library code from ES5 to ES6
+* **Breaking:** Removed support for node 7 (end of life)
+* **Breaking:** Removed support for node 6 (end of life)
+* **Breaking:** Removed support for node 5 (end of life)
+* **Breaking:** Removed support for node 4 (end of life)
+
 4.2.0
 =====
 
