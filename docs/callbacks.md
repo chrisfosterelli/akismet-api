@@ -21,9 +21,9 @@ _Upgrading to 5.0?_ The docs have changed a fair bit but everything is backward
 compatible on supported node versions, so you likely don't need to change
 anything! Check out the [changelog][changelog].
 
-**These docs below are with ES6 async/await usage, but if you prefer another
-API you can also use this library [with promises][promises] or [with
-callbacks][callbacks]!**
+**These docs below are with callback usage, but if you prefer another API you
+can also use this library [with ES6 async/await][README] or [with
+promises][promises]!**
 
 Installing
 ----------
@@ -40,11 +40,11 @@ get started! For a full list of available client parameters and alternative
 constructors, check out the [client documentation][client].
 
 ```javascript
-import { AkismetClient } from 'akismet-api'
-
-const key = 'myKey'
-const blog = 'https://myblog.com'
-const client = new AkismetClient({ key, blog })
+var Akismet = require('akismet-api');
+var client = Akismet.client({
+  blog: 'https://myblog.com',
+  key: 'myKey'
+});
 ```
 
 Verifying your Key
@@ -53,14 +53,12 @@ Verifying your Key
 It's a good idea to verify your key before use.
 
 ```javascript
-try {
-  const isValid = await client.verifyKey()
+client.verifyKey(function(err, isValid) {
+  if (err) return console.error('Error:', err.message);
 
-  if (isValid) console.log('Valid key!')
-  else console.log('Invalid key!')
-} catch (err) {
-  console.error('Could not reach Akismet:', err.message)
-}
+  if (isValid) console.log('Valid key!');
+  else console.log('Invalid key!');
+});
 ```
 
 Creating a Comment
@@ -73,13 +71,13 @@ recommended. The following is a basic example, but see our documentation on the
 provide.
 
 ```javascript
-const comment = {
+var comment = {
   ip: '123.123.123.123',
   useragent: 'CommentorsAgent 1.0 WebKit',
   content: 'Very nice blog! Check out mine!',
   email: 'not.a.spammer@gmail.com',
   name: 'John Doe'
-}
+};
 ```
 
 Checking for Spam
@@ -90,14 +88,12 @@ If Akismet cannot be reached or returns an error, `checkSpam` will throw an
 exception.
 
 ```javascript
-try {
-  const isSpam = await client.checkSpam(comment)
+client.checkSpam(comment, function(err, isSpam) {
+  if (err) return console.error('Error:', err.message);
 
-  if (isSpam) console.log('OMG Spam!')
-  else console.log('Totally not spam')
-} catch (err) {
-  console.error('Something went wrong:', err.message)
-}
+  if (isSpam) console.log('OMG Spam!');
+  else console.log('Totally not spam');
+});
 ```
 
 Submitting False Negatives
@@ -107,12 +103,10 @@ If Akismet reports something as not-spam, but it turns out to be spam anyways,
 we can report this to Akismet to help improve their accuracy in the future.
 
 ```javascript
-try {
-  await client.submitSpam(comment)
-  console.log('Spam reported!')
-} catch (err) {
-  console.error('Something went wrong:', err.message)
-}
+client.submitSpam(comment, function(err) {
+  if (err) return console.error('Error:', err.message);
+  console.log('Spam reported!');
+});
 ```
 
 Submitting False Positives
@@ -122,12 +116,10 @@ If Akismet reports something as spam, but it turns out to not be spam, we can
 report this to Akismet too.
 
 ```javascript
-try {
-  await client.submitHam(comment)
-  console.log('Non-spam reported!')
-} catch (err) {
-  console.error('Something went wrong:', err.message)
-}
+client.submitHam(comment, function(err) {
+  if (err) return console.error('Error:', err.message);
+  console.log('Non-spam reported!');
+});
 ```
 
 Testing
@@ -172,5 +164,5 @@ See [LICENSE.txt][license] for more information.
 [twostoryrobot]: https://github.com/twostoryrobot
 [comments]: /docs/comments.md
 [promises]: /docs/promises.md
-[callbacks]: /docs/callbacks.md
+[README]: /README.md
 [client]: /docs/client.md
