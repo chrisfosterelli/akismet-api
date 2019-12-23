@@ -128,7 +128,7 @@ Testing
 -------
 
 If you are running integration tests on your app with Akismet, you should set 
-`isTest : true` in your comments! That way, your testing data won't affect
+`isTest: true` in your comments! That way, your testing data won't affect
 Akismet.
 
 To run the library's tests, just use `npm test`. To also run the optional
