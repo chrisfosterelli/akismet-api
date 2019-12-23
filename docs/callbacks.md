@@ -40,8 +40,8 @@ get started! For a full list of available client parameters and alternative
 constructors, check out the [client documentation][client].
 
 ```javascript
-var akismet = require('akismet-api');
-var client = akismet.client({
+var Akismet = require('akismet-api');
+var client = Akismet.client({
   blog : 'https://myblog.com',
   key : 'myKey'
 });

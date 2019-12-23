@@ -40,11 +40,11 @@ get started! For a full list of available client parameters and alternative
 constructors, check out the [client documentation][client].
 
 ```javascript
-const akismet = require('akismet-api')
+const Akismet = require('akismet-api')
 
 const key = 'myKey'
 const blog = 'https://myblog.com'
-const client = new akismet.AkismetClient({ key, blog })
+const client = new Akismet.Client({ key, blog })
 ```
 
 Verifying your Key
