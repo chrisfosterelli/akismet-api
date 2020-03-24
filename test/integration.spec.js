@@ -7,11 +7,11 @@ if (!process.env.AKISMET_KEY) {
   console.log('\nSkipping integration tests, no AKISMET_KEY present...')
 }
 
-describe('integration', function() {
+describe('integration', function () {
   let client
   this.slow(2000)
 
-  before(function() {
+  before(function () {
     if (!process.env.AKISMET_KEY) {
       this.skip()
     }

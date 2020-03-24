@@ -198,11 +198,11 @@ describe('promise API', () => {
             .checkSpam({
               user_ip: '123.123.123.123'
             })
-            .then(function(spam) {
+            .then(function (spam) {
               const msg = 'Unexpectedly resolved'
               throw new Error(msg)
             })
-            .catch(function(err) {
+            .catch(function (err) {
               expect(err.message).to.equal('You did something wrong!')
               scope.done()
             })
