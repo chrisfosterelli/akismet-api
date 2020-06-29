@@ -10,7 +10,7 @@
   "devDependencies": {
     "chai": "^4.0.1",
     "mocha": "^8.0.1",
-    "nock": "^12.0.0",
+    "nock": "^13.0.0",
     "prettier": "^2.0.2"
   },
   "scripts": {
