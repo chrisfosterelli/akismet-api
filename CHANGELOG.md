@@ -1,3 +1,13 @@
+5.1.0
+=====
+
+* Feature: Add official support for Node 15.x
+* Feature: Add official support for Node 14.x
+* Patch: Update mocha to 8.2.0
+* Patch: Update superagent to 6.1.0
+* Patch: Update prettier to 2.1.2
+* Patch: Update nock to 13.0.4
+
 5.0.0
 =====
 
