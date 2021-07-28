@@ -1,3 +1,10 @@
+5.2.0
+=====
+
+* Feature: Add official support for Node 16.x
+* Patch: Update mocha to 9.0.1
+* Patch: Use github-native dependabot
+
 5.1.0
 =====
 
