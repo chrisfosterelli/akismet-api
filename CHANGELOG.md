@@ -1,3 +1,8 @@
+5.2.1
+=====
+
+* Patch: Minor README update
+
 5.2.0
 =====
 
