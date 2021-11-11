@@ -3,6 +3,7 @@
   "version": "5.2.1",
   "description": "Nodejs bindings to the Akismet (https://akismet.com) spam detection service",
   "main": "lib/akismet.js",
+  "typings": "akismet-api.d.ts",
   "dependencies": {
     "bluebird": "^3.1.1",
     "superagent": "^6.1.0"
