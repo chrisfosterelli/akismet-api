@@ -1,16 +1,26 @@
 declare module "akismet-api" {
-  // Type definitions for akismet-api 5.2.1
-  // Definitions by: Jason Florentino https://github.com/jasonflorentino
-
   // Main Akismet Client Class
   export class AkismetClient {
     constructor(options: AkismetClientOptions);
 
-    verifyKey(callback?: () => void): void;
+    verifyKey(
+      callback?: (err: Error, isValid: boolean) => void
+    ): Promise<boolean>;
 
-    checkSpam(comment: Comment, callback?: () => void): boolean;
-    submitSpam(comment: Comment, callback?: () => void): void;
-    submitHam(comment: Comment, callback?: () => void): void;
+    checkSpam(
+      comment: Comment,
+      callback?: (err: Error, isSpam: boolean) => void
+    ): Promise<boolean>;
+
+    submitSpam(
+      comment: Comment,
+      callback?: (err: Error) => void
+    ): Promise<void>;
+
+    submitHam(
+      comment: Comment,
+      callback?: (err: Error) => void
+    ): Promise<void>;
   }
 
   // Legacy props
