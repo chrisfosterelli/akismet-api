@@ -1,3 +1,9 @@
+5.3.0
+=====
+
+* Feature: Added typescript DTS typings (thanks @jasonflorentino!)
+* Patch: Removed David DM
+
 5.2.1
 =====
 
