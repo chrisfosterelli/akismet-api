@@ -9,6 +9,7 @@ Full Nodejs bindings to the Akismet (https://akismet.com) spam detection
 service.
 
 Features:
+* Typescript support 
 * API support for async/await, promises, and callbacks
 * Supports all active versions of node (10 to 16)
 * Supports all Akismet API features
