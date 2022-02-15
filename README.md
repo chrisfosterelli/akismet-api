@@ -2,7 +2,6 @@ Akismet-api
 ===========
 
 [![Build Status][img:build]][build]
-[![Dependency Status][img:deps]][deps]
 [![Download Count][img:downloads]][downloads]
 [![License][img:license]][license]
 
@@ -159,7 +158,6 @@ Released under the MIT license.
 See [LICENSE.txt][license] for more information.
 
 [img:build]: https://img.shields.io/travis/com/chrisfosterelli/akismet-api/master.svg?maxAge=3600&style=flat-square
-[img:deps]: https://img.shields.io/david/chrisfosterelli/akismet-api.svg?maxAge=3600&style=flat-square
 [img:downloads]: https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square
 [img:license]: https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square
 [build]: https://travis-ci.com/chrisfosterelli/akismet-api
