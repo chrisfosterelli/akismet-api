@@ -161,7 +161,7 @@ See [LICENSE.txt][license] for more information.
 [img:build]: https://img.shields.io/travis/com/chrisfosterelli/akismet-api/master.svg?maxAge=3600&style=flat-square
 [img:downloads]: https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square
 [img:license]: https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square
-[build]: https://travis-ci.com/chrisfosterelli/akismet-api
+[build]: https://app.travis-ci.com/chrisfosterelli/akismet-api
 [deps]: https://david-dm.org/chrisfosterelli/akismet-api
 [downloads]: https://www.npmjs.com/package/akismet-api
 [license]: /LICENSE.txt
