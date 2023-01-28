@@ -10,7 +10,7 @@ Provide as many of these as you can as it really helps with accuracy.
 | Parameter | Akismet API Name | Description |
 | --- | --- | --- |
 | `ip` | `user_ip` | The commentor's IP address (**required**)|
-| `useragent` | `user_agent` | The commentor's user agent  (**required**) |
+| `useragent` | `user_agent` | The commentor's user agent |
 | `referrer` | `referrer` | The referrer header sent by the commentor's browser |
 | `content` | `comment_content` | The actual content of the comment |
 | `name` | `comment_author` | The commentor's name |
