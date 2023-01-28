@@ -1,6 +1,6 @@
 {
   "name": "akismet-api",
-  "version": "5.4.0",
+  "version": "6.0.0",
   "description": "Nodejs bindings to the Akismet (https://akismet.com) spam detection service",
   "main": "lib/akismet.js",
   "typings": "akismet-api.d.ts",
@@ -27,6 +27,6 @@
   "author": "Chris Foster <chris.james.foster@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=14.0.0"
   }
 }

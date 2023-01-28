@@ -1,3 +1,22 @@
+6.0.0
+=====
+
+* **Breaking:** Removed support for Node 13 (end of life)
+* **Breaking:** Removed support for Node 12 (end of life)
+* **Breaking:** Removed support for Node 10 (end of life)
+* Feature: Added official support for Node 19.x
+* Feature: Added official support for Node 18.x
+* Patch: User agent is no longer a required field
+* Patch: Added CI typescript type validation
+* Patch: Fixed travis link
+* Patch: Updated nock to 13.0.0
+* Patch: Updated prettier to 2.0.2
+* Patch: Updated mocha to 10.0.0
+* Patch: Updated superagent to 8.0.0
+* Patch: Updated chai to 4.0.1
+* Patch: Resolved dependabot alert about qs
+* Patch: Resolved dependabot alert about minimatch
+
 5.3.0
 =====
 
