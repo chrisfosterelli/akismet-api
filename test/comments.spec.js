@@ -29,6 +29,8 @@ describe('comment structure', () => {
           '&comment_post_modified_gmt=2019-12-22T13%3A05%3A04Z' +
           '&comment_author_url=https%3A%2F%2Fauthorsite.com' +
           '&user_role=user' +
+          '&honeypot_field_name=my_honeypot_field' +
+          '&my_honeypot_field=I%20fell%20for%20the%20honeypot%21' +
           '&blog=https%3A%2F%2Fexample.com' +
           '&blog_lang=en%2C%20fr_ca' +
           '&blog_charset=UTF-8'
@@ -49,6 +51,8 @@ describe('comment structure', () => {
       permalink: 'https://example.com/posts/123215',
       comment_post_modified_gmt: '2019-12-22T13:05:04Z',
       comment_author_url: 'https://authorsite.com',
+      honeypot_field_name: 'my_honeypot_field',
+      my_honeypot_field: 'I fell for the honeypot!',
       user_role: 'user'
     })
     expect(isSpam).to.be.true
@@ -79,6 +83,8 @@ describe('comment structure', () => {
           '&comment_post_modified_gmt=2019-12-22T13%3A05%3A04Z' +
           '&comment_author_url=https%3A%2F%2Fauthorsite.com' +
           '&user_role=user' +
+          '&honeypot_field_name=akismet_api_honeypot_field' +
+          '&akismet_api_honeypot_field=I%20fell%20for%20the%20honeypot%21' +
           '&blog=https%3A%2F%2Fexample.com' +
           '&blog_lang=en%2C%20fr_ca' +
           '&blog_charset=UTF-8'
@@ -99,6 +105,7 @@ describe('comment structure', () => {
       permalink: 'https://example.com/posts/123215',
       permalinkDate: '2019-12-22T13:05:04Z',
       url: 'https://authorsite.com',
+      honeypot: 'I fell for the honeypot!',
       role: 'user'
     })
     expect(isSpam).to.be.true
