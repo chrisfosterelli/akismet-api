@@ -11,7 +11,7 @@ service.
 Features:
 * Typescript support 
 * API support for async/await, promises, and callbacks
-* Supports all active versions of node (10 to 16)
+* Supports all active versions of node (14 to 19)
 * Supports all Akismet API features
 * Complete set of unit and integration tests
 * Idiomatic JS parameters (with backward compatability)

@@ -69,5 +69,6 @@ declare module "akismet-api" {
     | 'permalink'
     | 'comment_post_modified_gmt' | 'permalinkDate'
     | 'comment_author_url' | 'url'
-    | 'user_role' | 'role';
+    | 'user_role' | 'role'
+    | 'honeypot' | 'honeypot_field_name';
 }
