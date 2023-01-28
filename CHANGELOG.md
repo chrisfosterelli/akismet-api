@@ -4,6 +4,7 @@
 * **Breaking:** Removed support for Node 13 (end of life)
 * **Breaking:** Removed support for Node 12 (end of life)
 * **Breaking:** Removed support for Node 10 (end of life)
+* Feature: Added support for `honeypot` / `honeypot_field_name`
 * Feature: Added official support for Node 19.x
 * Feature: Added official support for Node 18.x
 * Patch: User agent is no longer a required field
