@@ -27,7 +27,7 @@ Provide as many of these as you can as it really helps with accuracy.
 Honeypot field
 --------------
 
-Akismet supports a ["honeypot" field]. Honeypot fields are visually hidden
+Akismet supports a ["honeypot" field][0]. Honeypot fields are visually hidden
 inputs which trick bot users into completing a field that human users can't
 detect. If your form is submitted with a value in the honeypot field it is a
 very strong signal for spam, because only a bot would detect and complete the
@@ -48,4 +48,4 @@ comment['myHoneypotField'] = myForm['myHoneypotField']
 Make sure that, on the user interface side, your honeypot field is hidden via
 CSS or Javascript.
 
-["honeypot" fields]: https://en.wikipedia.org/wiki/Honeypot_(computing)
+[0]: https://en.wikipedia.org/wiki/Honeypot_(computing)
