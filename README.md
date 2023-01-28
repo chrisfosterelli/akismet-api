@@ -17,9 +17,8 @@ Features:
 * Idiomatic JS parameters (with backward compatability)
 * Trusted by many projects (like [Coral][coral]!)
 
-_Upgrading to 5.0?_ The docs have changed a fair bit but everything is backward
-compatible on supported node versions, so you likely don't need to change
-anything! Check out the [changelog][changelog].
+_Upgrading to 6.0?_ Changes are fairly minimal as long as you're on an active
+version of node, but check out the [changelog][changelog] for full details.
 
 **These docs below are with ES6 async/await usage, but if you prefer another
 API you can also use this library [with promises][promises] or [with
