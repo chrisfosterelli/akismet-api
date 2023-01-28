@@ -22,6 +22,7 @@ Provide as many of these as you can as it really helps with accuracy.
 | `recheck` | `recheck_reason` | If checking a previously checked comment, you can provide a reason why (e.g. 'edit') |
 | `type` | `comment_type` | The type of comment (e.g. 'comment', 'reply', 'forum-post', 'blog-post') |
 | `role` | `user_role` | The commentor's 'role'. If set to 'administrator', it will never be marked spam |
+| `honeypot` | `honeypot_field_name` | See section below for detailed description |
 | `isTest` | `is_test` | Set this to `true` for your automated tests |
 
 Honeypot field
