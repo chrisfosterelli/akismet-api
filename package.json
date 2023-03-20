@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "chai": "^4.0.1",
-    "check-dts": "^0.6.7",
+    "check-dts": "^0.7.1",
     "mocha": "^10.0.0",
     "nock": "^13.0.0",
     "prettier": "^2.0.2"
