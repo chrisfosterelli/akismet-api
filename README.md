@@ -157,7 +157,7 @@ Released under the MIT license.
 
 See [LICENSE.txt][license] for more information.
 
-[img:build]: https://img.shields.io/travis/com/chrisfosterelli/akismet-api/master.svg?maxAge=3600&style=flat-square
+[img:build]: https://github.com/chrisfosterelli/akismet-api/actions/workflows/main.yml/badge.svg
 [img:downloads]: https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square
 [img:license]: https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square
 [build]: https://app.travis-ci.com/chrisfosterelli/akismet-api
