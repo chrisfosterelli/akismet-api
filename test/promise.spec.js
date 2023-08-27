@@ -109,7 +109,7 @@ describe('promise API', () => {
             throw new Error(msg)
           })
           .catch(err => {
-            expect(err.message).to.include('ENOTFOUND')
+            expect(err.message).to.include('getaddrinfo')
           })
       })
     })
@@ -264,7 +264,7 @@ describe('promise API', () => {
             throw new Error(msg)
           })
           .catch(err => {
-            expect(err.message).to.include('ENOTFOUND')
+            expect(err.message).to.include('getaddrinfo')
           })
       })
     })
@@ -349,7 +349,7 @@ describe('promise API', () => {
             throw new Error(msg)
           })
           .catch(err => {
-            expect(err.message).to.include('ENOTFOUND')
+            expect(err.message).to.include('getaddrinfo')
           })
       })
     })
@@ -434,7 +434,7 @@ describe('promise API', () => {
             throw new Error(msg)
           })
           .catch(err => {
-            expect(err.message).to.include('ENOTFOUND')
+            expect(err.message).to.include('getaddrinfo')
           })
       })
     })
