@@ -27,7 +27,7 @@ jobs:
   results:
       if: ${{ always() }}
       runs-on: ubuntu-latest
-      name: Passes on all supported versions 
+      name: all supported versions 
       needs: [node]
       steps:
         - run: |
