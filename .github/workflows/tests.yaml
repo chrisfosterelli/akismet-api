@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  node:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,3 +24,16 @@ jobs:
       - run: npm test
         env:
           AKISMET_KEY: ${{ secrets.AKISMET_KEY }}
+  results:
+      if: ${{ always() }}
+      runs-on: ubuntu-latest
+      name: Passes on all supported versions 
+      needs: [node]
+      steps:
+        - run: |
+            result="${{ needs.node.result }}"
+            if [[ $result == "success" || $result == "skipped" ]]; then
+              exit 0
+            else
+              exit 1
+            fi
