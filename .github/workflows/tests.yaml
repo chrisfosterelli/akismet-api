@@ -14,10 +14,13 @@ jobs:
         node-version: [19.x, 18.x, 16.x, 15.x, 14.x]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Configure ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
       - run: npm install -g npm@latest
       - run: npm ci
       - run: npm test
+        env:
+          AKISMET_KEY: ${{ secrets.AKISMET_KEY }}
