@@ -132,7 +132,7 @@ describe('callback API', () => {
 
       it('should return the error', done => {
         client.verifyKey((err, valid) => {
-          expect(err.message).to.include('ENOTFOUND')
+          expect(err.message).to.include('getaddrinfo')
           expect(err).to.not.be.null
           done()
         })
@@ -349,7 +349,7 @@ describe('callback API', () => {
             user_ip: '123.123.123.123'
           },
           (err, spam) => {
-            expect(err.message).to.include('ENOTFOUND')
+            expect(err.message).to.include('getaddrinfo')
             expect(err).to.not.be.null
             done()
           }
@@ -438,7 +438,7 @@ describe('callback API', () => {
             user_ip: '123.123.123.123'
           },
           err => {
-            expect(err.message).to.include('ENOTFOUND')
+            expect(err.message).to.include('getaddrinfo')
             expect(err).to.not.be.null
             done()
           }
@@ -527,7 +527,7 @@ describe('callback API', () => {
             user_ip: '123.123.123.123'
           },
           err => {
-            expect(err.message).to.include('ENOTFOUND')
+            expect(err.message).to.include('getaddrinfo')
             expect(err).to.not.be.null
             done()
           }

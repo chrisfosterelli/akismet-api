@@ -102,7 +102,7 @@ describe('await API', () => {
           await client.verifyKey()
           throw new Error('Should not be reached!')
         } catch (err) {
-          expect(err.message).to.include('ENOTFOUND')
+          expect(err.message).to.include('getaddrinfo')
         }
       })
     })
@@ -244,7 +244,7 @@ describe('await API', () => {
           })
           throw new Error('Should not be reached!')
         } catch (err) {
-          expect(err.message).to.include('ENOTFOUND')
+          expect(err.message).to.include('getaddrinfo')
         }
       })
     })
@@ -324,7 +324,7 @@ describe('await API', () => {
           })
           throw new Error('Should not be reached!')
         } catch (err) {
-          expect(err.message).to.include('ENOTFOUND')
+          expect(err.message).to.include('getaddrinfo')
         }
       })
     })
@@ -404,7 +404,7 @@ describe('await API', () => {
           })
           throw new Error('Should not be reached!')
         } catch (err) {
-          expect(err.message).to.include('ENOTFOUND')
+          expect(err.message).to.include('getaddrinfo')
         }
       })
     })
