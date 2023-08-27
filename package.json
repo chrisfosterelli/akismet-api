@@ -13,7 +13,7 @@
     "check-dts": "^0.7.2",
     "mocha": "^10.0.0",
     "nock": "^13.0.0",
-    "prettier": "^2.0.2"
+    "prettier": "^3.0.2"
   },
   "scripts": {
     "test": "prettier --check '**/*.js' && mocha test/*.spec.js && check-dts akismet-api.d.ts",
