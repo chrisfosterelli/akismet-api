@@ -157,10 +157,10 @@ Released under the MIT license.
 
 See [LICENSE.txt][license] for more information.
 
-[img:build]: https://img.shields.io/github/actions/workflow/status/chrisfosterelli/akismet-api/main.yml?maxAge=3600&style=flat-square&event=push
-[img:downloads]: https://img.shields.io/npm/dm/akismet-api.svg?maxAge=3600&style=flat-square
-[img:license]: https://img.shields.io/npm/l/akismet-api.svg?maxAge=3600&style=flat-square
-[build]: https://app.travis-ci.com/chrisfosterelli/akismet-api
+[img:build]: https://img.shields.io/github/actions/workflow/status/chrisfosterelli/akismet-api/main.yml?style=flat-square&branch=main
+[img:downloads]: https://img.shields.io/npm/dm/akismet-api.svg?style=flat-square
+[img:license]: https://img.shields.io/npm/l/akismet-api.svg?style=flat-square
+[build]: https://github.com/chrisfosterelli/akismet-api/actions
 [deps]: https://david-dm.org/chrisfosterelli/akismet-api
 [downloads]: https://www.npmjs.com/package/akismet-api
 [license]: /LICENSE.txt
